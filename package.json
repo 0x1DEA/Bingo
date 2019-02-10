@@ -1,0 +1,15 @@
+{
+  "name": "bingobot",
+  "version": "1.0.0",
+  "description": "BINGOs people. Gives them the bingo role and displays a message with their pfp being crushed by a tombstone. B I N G O. Discord.JS bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SeeBeyond",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "gifencoder": "^2.0.1"
+  }
+}
