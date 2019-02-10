@@ -8,10 +8,11 @@ Discord bot that gives users a Bingo role on command. Then generates a gif of th
 ```json
 {
   "token": "bot token here",
-  "prefix": "!"
+  "prefix": "!",
+  "roleid": "exclusive role id here"
 }
 ```
-Bot token can be found [here](https://discordapp.com/developers/applications), click on your application, go to the bot tab, (create a bot user if you haven't already) and copy it's login token on the right sode of the screen.
+Bot token can be found [here](https://discordapp.com/developers/applications), click on your application, go to the bot tab, (create a bot user if you haven't already) and copy it's login token on the right sode of the screen. The role id only lets a certain role use the Bingo command. To find your role id, set role to me mentionable, mention the role with a backslash before the @ symbol. You should get a message that looks like <@&numbers> the numbers between the <@& and the > are what you want.
 ## Run
 - Just run `npm start` and you should be good!
 ## Using
