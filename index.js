@@ -15,7 +15,7 @@ encoder.start();
 encoder.setRepeat(0);   // 0 for repeat, -1 for no-repeat
 encoder.setDelay(100);  // frame delay in ms
 encoder.setQuality(10); // image quality. 10 is default.
- 
+
 // discord start
  client.on("ready", () => {
   console.log("I am ready!");
@@ -34,9 +34,11 @@ client.on("message", (message) => {
 		// in this scope, member refers to user as a member of a guild
 		// user is just the person as a user of discord
 		let member = message.mentions.members.first();
-		let user = message.mentions.users.first();
+    let user = message.mentions.users.first();
+    // <prefix>bingo @name oof 1000
 		let nick =  args[1]
-		let time =  args[2]
+		let tombstone_type = args[2]
+		let time =  args[3]
 		// set nickname
 		member.setNickname(nick);
 		// time until bingo wears off (not implemented)
@@ -52,7 +54,7 @@ client.on("message", (message) => {
 		var tomb = new can.Image();
 		// set variables for the image URLs. Tombstone and user pfp
 		img.src = user.avatarURL;
-		tomb.src = "https://seebeyond.space/snippets/assets/bingo/tomb.png";
+    tomb.src = `https://seebeyond.space/snippets/assets/bingo/${tombstone_type}.png`; // TODO: add fallback to tomb OR throw "Tomb not recognized" error
 		// when user pfp (img) is done loading
 		img.onload = function() {
 			// when tomb image is done loading
