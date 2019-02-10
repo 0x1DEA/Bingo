@@ -4,7 +4,7 @@ Discord bot that gives users a Bingo role on command. Then generates a gif of th
 - Make sure you have [Node.js](https://nodejs.org/en/) installed
 - Open a command prompt and navigate to the working directory
 - Run `npm install` to install dependencies
-- Create a new file called `config.json`
+- Create a new file called `config.json` set the bot token an optional prefix
 ```json
 {
   "token": "bot token here",
@@ -14,3 +14,6 @@ Discord bot that gives users a Bingo role on command. Then generates a gif of th
 Bot token can be found [here](https://discordapp.com/developers/applications), click on your application, go to the bot tab, (create a bot user if you haven't already) and copy it's login token on the right sode of the screen.
 ## Run
 - Just run `npm start` and you should be good!
+## Using
+- `!bingo <mention user> <nick name (optional)>
+Bingo a user. Mention them and a nickname.
