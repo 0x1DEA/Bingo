@@ -1,61 +1,82 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+// import libraries
 const config = require("./config.json");
 const GIFEncoder = require('gifencoder');
 const { createCanvas } = require('canvas');
 const can = require('canvas');
 const fs = require('fs');
+const Discord = require("discord.js");
+
+const client = new Discord.Client();
 const encoder = new GIFEncoder(320, 240);
-// stream the results as they are available into myanimated.gif
+// stream the results as they are available into bingo.gif
 encoder.createReadStream().pipe(fs.createWriteStream('bingo.gif'));
- 
+// init encoder
 encoder.start();
 encoder.setRepeat(0);   // 0 for repeat, -1 for no-repeat
 encoder.setDelay(100);  // frame delay in ms
 encoder.setQuality(10); // image quality. 10 is default.
  
-// discord
+// discord start
  client.on("ready", () => {
   console.log("I am ready!");
 });
- 
+
+// when a message is sent in chat
 client.on("message", (message) => {
-  if (message.content.startsWith(config.prefix + "bingo")) {
+  if (message.content.indexOf(config.prefix) !== 0) return;
+  // basic command handler splits text into arguments
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+	
+  if (command === "bingo") {
+	// create varibles for the user
+	// in this scope, member refers to user as a member of a guild
+	// user is just the person as a user of discord
 	let member = message.mentions.members.first();
 	let user = message.mentions.users.first();
-	console.log("uid " + member.id);
+	// add role and send message
 	member.addRole("544082484531298304").catch(console.error);
-	console.log("added role");
-	console.log("avatar url " + user.avatarURL);
 	message.channel.send(member + " Has been B I N G O'd");
-	//create gif
-	console.log("started function");
-	// use node-canvas
+	
+	//create gif using node canvas to draw frames
 	const canvas = createCanvas(320, 240);
 	const ctx = canvas.getContext('2d');
+	// these are our images
 	var img = new can.Image();
 	var tomb = new can.Image();
+	// set variables for the image URLs. Tombstone and user pfp
 	img.src = user.avatarURL;
 	tomb.src = "https://seebeyond.space/snippets/assets/bingo/tomb.png";
+	// when user pfp (img) is done loading
 	img.onload = function() {
+		// when tomb image is done loading
 		tomb.onload = function() {
 			// frame
+			// draw pfp image first
 			ctx.drawImage(img,100,150,100,100);
+			// draw tomb after so it's on top
 			ctx.drawImage(tomb,90,-80, 150, 160);
+			//add frame to the encoder
 			encoder.addFrame(ctx);
 			// frame
+			// clears canvas of previous frame
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img,100,150,100,100);
 			ctx.drawImage(tomb,90,-60, 150, 160);
 			encoder.addFrame(ctx);
 			// frame
+			// don't think I need to repeat myself here
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img,100,150,100,100);
 			ctx.drawImage(tomb,90,-40, 150, 160);
 			encoder.addFrame(ctx);
 			// frame
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img,100,150,100,100);
 			ctx.drawImage(tomb,90,-20, 150, 160);
 			encoder.addFrame(ctx);
 			// frame
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img,100,150,100,100);
 			ctx.drawImage(tomb,90,0, 150, 160);
 			encoder.addFrame(ctx);
@@ -78,16 +99,18 @@ client.on("message", (message) => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img,100,150,100,100);
 			ctx.drawImage(tomb,90,80, 150, 160);
+			// some more frames to make the end of the gif last longer
 			encoder.addFrame(ctx);
 			encoder.addFrame(ctx);
 			encoder.addFrame(ctx);
 			encoder.addFrame(ctx);
-			 
+			// finalize gif 
 			encoder.finish();
+			// send the gif as an attachment in the channel the command was sent
 			message.channel.send(" ", {file: "./bingo.gif"})
 		}
 	}
   }
 });
-
+// discord bot token
 client.login(config.token);
