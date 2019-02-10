@@ -29,7 +29,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 	
   if (command === "bingo") {
-	if(message.member.roles.find("id", config.roleid)) {
+	if(message.member.roles.find("id", config.ownerroleid)) {
 		// create varibles for the user
 		// in this scope, member refers to user as a member of a guild
 		// user is just the person as a user of discord
@@ -41,7 +41,7 @@ client.on("message", (message) => {
 		member.setNickname(nick);
 		// time until bingo wears off (not implemented)
 		// add role and send message
-		member.addRole("544082484531298304").catch(console.error);
+		member.addRole(config.bingoroleid).catch(console.error);
 		message.channel.send(member + " Has been B I N G O'd");
 		
 		//create gif using node canvas to draw frames
@@ -112,8 +112,8 @@ client.on("message", (message) => {
 				encoder.addFrame(ctx);
 				// finalize gif 
 				encoder.finish();
-				// send the gif as an attachment in the channel the command was sent
-				message.channel.send(" ", {file: "./bingo.gif"})
+				// wait until done
+				setTimeout(function() {message.channel.send(" ", {file: "./bingo.gif"})}, 3000,)
 			}
 		}
 	} else {
