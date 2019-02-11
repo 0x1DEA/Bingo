@@ -1,9 +1,9 @@
 // import libraries
 import config from "./config.json";
-import GIFEncoder from 'gifencoder';
+import GIFEncoder = require('gifencoder');
 import can, { createCanvas } from 'canvas';
-import fs from 'fs';
-import Discord from "discord.js";
+import fs = require('fs');
+import Discord = require('discord.js');
 
 const client = new Discord.Client();
 const encoder = new GIFEncoder(320, 240);
