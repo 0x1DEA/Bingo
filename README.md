@@ -9,7 +9,7 @@ Discord bot that gives users a Bingo role on command. Then generates a gif of th
 {
   "token": "bot token here",
   "prefix": "!",
-  "ownerroleid": "exclusive role id here"
+  "ownerroleid": "exclusive role id here",
   "bingoroleid": "bingo role id here"
 }
 ```
