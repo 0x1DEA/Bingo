@@ -1,8 +1,8 @@
-exports.run = (client, message, member [mention, time, tomb, ...nick]) => {
+exports.run = (client, message, member, [mention, time, tomb, ...nick]) => {
   const adminRole = message.guild.roles.find(role => role.id === config.ownerroleid);
   if (!adminRole)
     return console.log("The required role does not exist.");
-  if (!message.member.roles.has(modRole.id))
+  if (!message.member.roles.has(adminRole.id))
     return message.reply("Permission Denied.");
   if (message.mentions.members.size === 0)
     return message.reply("Please mention a user to Bingo");
@@ -16,7 +16,7 @@ exports.run = (client, message, member [mention, time, tomb, ...nick]) => {
   }
   if(!tomb) {
     console.log('No tomb specified, using default.');
-    tomb = default;
+    tomb = "default";
   }
   if(!time) {
     message.reply('You didn\'t set a time');

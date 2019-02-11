@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
+import GIFEncoder = require('gifencoder');
+import can, { createCanvas } from 'canvas';
 
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -24,7 +26,7 @@ client.commands = new Enmap();
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
-    if (!file.endsWith(".ts")) return;
+    if (!file.endsWith(".jSs")) return;
     let props = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
     client.commands.set(commandName, props);
