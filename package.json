@@ -10,7 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "gifencoder": "^2.0.1"
+    "gifencoder": "^2.0.1",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "^10.12.24"
