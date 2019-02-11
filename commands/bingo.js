@@ -9,8 +9,6 @@ exports.run = (client, message, member, [mention, time, tomb, ...nick]) => {
   if (!message.guild.me.hasPermission("MANAGE_ROLES"))
     return message.reply("I don't have permission to manage roles!");
 
-  let member = message.mentions.members.first();
-  let user = message.mentions.users.first();
   if(nick) {
     member.setNickname(nick);
   }
@@ -38,7 +36,7 @@ exports.run = (client, message, member, [mention, time, tomb, ...nick]) => {
   const ctx = canvas.getContext('2d');
   var img = new can.Image();
 	var tomb = new can.Image();
-  img.src = user.avatarURL;
+  img.src = member.avatarURL;
   tomb.src = "https://seebeyond.space/snippets/assets/bingo/tomb.png";
 
   img.onload = function() {
