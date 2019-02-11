@@ -11,6 +11,7 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "gifencoder": "^2.0.1",
+    "ms": "^2.1.1",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3"
   },
