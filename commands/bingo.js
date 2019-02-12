@@ -7,11 +7,10 @@ exports.run = (client, message, [mention, time, tomb, nick]) => {
 
   var member = message.mentions.members.first();
   var user = message.mentions.users.first();
-  var time
   const adminRole = message.guild.roles.find(role => role.id === client.config.ownerroleid);
   if (!adminRole)
     return console.log("The required role does not exist.");
-  if (!message.member.roles.has(adminRole.id))
+  if (!message.member.roles.has(adminRole))
     return message.reply("Permission Denied.");
   if (message.mentions.members.size === 0)
     return message.reply("Please mention a user to Bingo");
@@ -34,7 +33,10 @@ exports.run = (client, message, [mention, time, tomb, nick]) => {
   member.addRole(client.config.bingoroleid)
     .catch(console.error);
   setTimeout(function(){
-    member.removeRole(client.config.bingoroleid);
+    member.removeRole(client.config.bingoroleid)
+      .catch(console.error);
+    member.setNickname("")
+      .catch(console.error);
   }, ms(time));
 
   //create gif using node canvas to draw frames
