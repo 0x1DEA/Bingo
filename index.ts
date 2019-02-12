@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
-import GIFEncoder = require('gifencoder');
-import can, { createCanvas } from 'canvas';
+const GIFEncoder = require('gifencoder');
+const can = require('canvas')
+const { createCanvas } = require('canvas');
 
 const client = new Discord.Client();
 const config = require("./config.json");
