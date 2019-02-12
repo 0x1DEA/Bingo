@@ -21,6 +21,6 @@ Bot token can be found [here](https://discordapp.com/developers/applications), c
 - Just run `npm start` and you should be good!
 ## Using
 - `<prefix>bingo <mention user (required)> <time (required)> <tombstone type (optional)> <nick name (optional)>`
-Bingo a user. Mention them, a time (ex. 1h, 1m, 10s), a tomb type ('default' is the only type. Add more by creating a file in the 'tombs' directory) and a nickname.
+- Bingo a user. Mention them, a time (ex. 1h, 1m, 10s), a tomb type ('default' is the only type. Add more by creating a file in the 'tombs' directory) and a nickname.
 - `<prefix>permcheck <discord permission>`
-Check if bot has a permission. Used for debugging.
+- Check if bot has a permission. Used for debugging.
